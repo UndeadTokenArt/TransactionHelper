@@ -20,18 +20,6 @@ def lookup(path):
     doc = opendoc(path)
     return re.findall(r'\[[^\]]*\]', doc)
 
-'''    words = doc.split()
-    list = []
-
-    for i in range(len(words)):
-        matches = re.findall(r'\[[^\]]*\]', doc)
-        if words[i] == matches:
-             print(words[i])
-             list.append(words[i])
-
-    return list
-'''
-
 
 print(lookup("template.txt"))
              
