@@ -18,14 +18,20 @@ def word_replacer(key, placeholder, path):
 # finds a placeholder word in a string and returns a list of all words found
 def lookup(path):
     doc = opendoc(path)
-    return re.findall(r'\[[^\]]*\]', doc)
+    return set(re.findall(r'\[[^\]]*\]', doc))
+
+
 
 
 print(lookup("template.txt"))
              
 
+# handles account information for google sheets to be inserted in Authentication function later
+# Authentication of credentials with google sheets
 
-#function that looks through a document or folder and gets all placeholders
+
+
+
 #function that makes a list of placeholder words and make sure there are no duplicates
 #function that makes a spread sheet that will have placeholders in one column
 #function that saves the document
