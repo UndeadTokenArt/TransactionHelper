@@ -2,6 +2,9 @@ body {
     text-align: center;
     background-color: SlateGrey;
 }
+h1 {
+    color: lightgray;
+}
 p {
     color: white;
     font-family: Shanti;
@@ -30,12 +33,12 @@ input:focus {
 }
 
 #greet {
-    background-color: PaleVioletRed;
+    background-color: mediumslateblue;
     border:  none;
     width:  200px;
     color: white;
 }
 
 #greet:hover {
-    background-color: MediumVioletRed;
+    background-color: mediumturquoise;
 }

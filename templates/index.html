@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
-    <img src="https://raw.githubusercontent.com/MariyaSha/SimpleGreetingApp/main/logo.png">
+    <h1>Transaction Helper</h1>
     <br>
     <form action="greet" method="post">
         {% for message in get_flashed_messages() %}

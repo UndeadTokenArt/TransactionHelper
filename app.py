@@ -1,7 +1,7 @@
-from flask import Flask
+from flask import Flask, render_template, request, flash
 
 app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    return "<button type='button'>User</button> <button>Find All</button> <button>Build</button>"
+    return render_template("index.html") 
