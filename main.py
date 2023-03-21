@@ -1,5 +1,16 @@
 import re
+import gspread
+from flask import Flask
 
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    return "<p>Hello, World!</p>"
+
+def start_gspread():
+    gc = gspread.service_account()
+    wks = gc.open("WordReplacemenmt").sheet1
 
 # opens a document in read mode
 def opendoc(path):
@@ -16,6 +27,6 @@ def word_replacer(key, placeholder, path):
         return " ".join(words)
 
 # finds a placeholder word in a string and returns a list of all words found
-def lookup(path):
+def aquire_placeholders(path):
     doc = opendoc(path)
     return set(re.findall(r'\[[^\]]*\]', doc))
