@@ -6,19 +6,23 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
-    <h1>Transaction Helper</h1>
+    <h1>Word replacement</h1>
     <br>
-    <form action="greet" method="post">
+    <form action="result" method="post">
         {% for message in get_flashed_messages() %}
              <p>{{ message }}</p>
          {% endfor %}
         <br>
-        <input type="text" name="name_input">
+        <h2>Key</h2>
+        <input type="text" name="key">
         <br>
-        <input type="submit" value="Submit" id="greet">
+        <h2>Placeholder</h2>
+        <input type="text" name="placeholder">
         <br>
-        <a href="/textreplacer">Text replacer</a>
-        </a>
+        <h2>Path To Document</h2>
+        <input type="text" name="path">
+        <br>
+        <input type="submit" value="Submit" id="result">
     </form>
 </body>
 </html>

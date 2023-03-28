@@ -33,12 +33,12 @@ input:focus {
 }
 
 #greet {
-    background-color: mediumslateblue;
+    background-color: turquoise;
     border:  none;
     width:  200px;
     color: white;
 }
 
 #greet:hover {
-    background-color: mediumturquoise;
+    background-color: darkturquoise;
 }
