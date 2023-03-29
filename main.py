@@ -31,12 +31,12 @@ def opendoc(path):
         return f.read()
 
 # word replacement function, takes word to replace with, placeholder to change and path of document
-def word_replacer(key="Berry Cool", placeholder="[Your Name]", path="template.txt"):
-        doc = opendoc(path)
+def word_replacer(arg1, arg2):
+        doc = opendoc('template.txt')
         words = doc.split()
         for i in range(len(words)):
-            if words[i] == placeholder:
-                words[i] = key
+            if words[i] == arg2:
+                words[i] = arg1
         return " ".join(words)
 
 # finds a placeholder word in a string and returns a list of all words found

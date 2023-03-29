@@ -7,11 +7,16 @@ app = Flask(__name__)
 def hello_world():
     return render_template("index.html")
 
-@app.route("/result/<key>", methods=['POST', 'GET'])
-def test(key):
-    text = word_replacer(key)
-    return f"<p>{text}</p>"
 
-@app.route("/textreplacer")
-def textreplacer():
+@app.route("/result", methods=['POST'])
+def result():
+    if request.method == 'POST':
+        arg1 = request.form['arg1']
+        arg2 = request.form['arg2']
+        return word_replacer(arg1, arg2)
+    else:
+        return render_template('not_found.html')
+
+@app.route("/form")
+def returned_template():
     return render_template("form.html")

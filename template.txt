@@ -1,4 +1,4 @@
-Dear [Client Name],
+Dear [Client_Name],
 
 I am thrilled to inform you that we are officially listing your stunning [Address] home on the market! It has been an absolute pleasure to work with you throughout this process, and I can't thank you enough for trusting me with the sale of your beautiful property.
 
@@ -12,5 +12,5 @@ Thank you again for the opportunity to work with you on this exciting journey. I
 
 Best regards,
 
-[Your Name]
-[Your Company Name]
+[Your_Name]
+[Your_Company_Name]

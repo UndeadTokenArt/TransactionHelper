@@ -9,18 +9,17 @@
     <h1>Word replacement</h1>
     <br>
     <form action="result" method="post">
-        {% for message in get_flashed_messages() %}
-             <p>{{ message }}</p>
-         {% endfor %}
-        <br>
         <h2>Key</h2>
-        <input type="text" name="key">
+        <label for="arg1">Key word:</label>
+        <input type="text" name="arg1">
         <br>
-        <h2>Placeholder</h2>
-        <input type="text" name="placeholder">
+        <lable for="arg2">Placeholder:</lable>
+        <input type="text" name="arg2">
         <br>
-        <h2>Path To Document</h2>
-        <input type="text" name="path">
+        <lable for="path">Path To Document:</lable>
+        <select id="path" name="path">
+            <option value="template.txt">Template</option>
+        </select>
         <br>
         <input type="submit" value="Submit" id="result">
     </form>
