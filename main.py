@@ -1,6 +1,7 @@
 import re
 import gspread
 from google.oauth2.service_account import Credentials
+import os
 
 '''
 Code used for connecting the google account Oauth stuff _ not ready yet 
@@ -32,7 +33,7 @@ def opendoc(path):
 
 # word replacement function, takes word to replace with, placeholder to change and path of document
 def word_replacer(arg1, arg2):
-        doc = opendoc('template.txt')
+        doc = opendoc('/documents/template.txt')
         words = doc.split()
         for i in range(len(words)):
             if words[i] == arg2:
@@ -43,3 +44,13 @@ def word_replacer(arg1, arg2):
 def aquire_placeholders(path):
     doc = opendoc(path)
     return set(re.findall(r'\[[^\]]*\]', doc))
+
+
+def get_docs_list():
+    folder_path = 'documents'
+    doc_list = [f.name for f in os.scandir(folder_path) if f.is_file()]
+    return doc_list
+
+print(aquire_placeholders('documents/template.txt'))
+# get a list of all the text files in the format folder
+# make a dictionary that holds a value for replacing words and what words are being replaced.

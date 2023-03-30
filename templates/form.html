@@ -8,20 +8,15 @@
 <body>
     <h1>Word replacement</h1>
     <br>
-    <form action="result" method="post">
-        <h2>Key</h2>
-        <label for="arg1">Key word:</label>
-        <input type="text" name="arg1">
-        <br>
-        <lable for="arg2">Placeholder:</lable>
-        <input type="text" name="arg2">
-        <br>
-        <lable for="path">Path To Document:</lable>
+    <form action="WR_step2" method="POST">
+        <lable for="path">What document would you like to start with?</lable>
         <select id="path" name="path">
-            <option value="template.txt">Template</option>
+            {% for doc in doc_list %}
+            <option value="{{ doc }}">{{ doc }}</option>
+            {% endfor %}
         </select>
         <br>
-        <input type="submit" value="Submit" id="result">
+        <input type="submit" value="Submit" id="WR_step2">
     </form>
 </body>
 </html>

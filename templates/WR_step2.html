@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction Helper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <h1>Word replacement</h1>
+    <br>
+    <form action="result" method="POST">
+        <lable for="path">Please Fill out what words will replace the placeholders</lable>
+        <br>
+        {% for placeholder in placeholders %}
+        <lable for="{{ placeholder }}">{{placeholder}}</lable>
+        <input type="text" id="{{ placeholder }}" name="{{ placeholder }}">
+        <br>
+        {% endfor %}
+        <br>
+        <input type="submit" value="Submit" id="result">
+    </form>
+</body>
+</html>

@@ -27,6 +27,17 @@ input {
   text-align: center;
 }
 
+select {
+    width: 140px;
+    height: 35px;
+    padding: 5px 35px 5px 5px;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 input:focus {
     outline: none;
     border: solid 5px #00FFCE;
