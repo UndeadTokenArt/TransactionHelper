@@ -8,14 +8,15 @@ def hello_world():
     return render_template("index.html")
 
 
-@app.route("/result", methods=['POST'])
+@app.route("/result", methods=['GET', 'POST'])
 def result():
-    if request.method == 'POST':
-        arg1 = request.form['arg1']
-        arg2 = request.form['arg2']
-        return word_replacer(arg1, arg2)
-    else:
-        return render_template('index.html')
+    path = request.path
+    working = True
+    while working:
+        for key, value in request.form.items():
+            string = word_replacer(value, key, path)
+            working = False
+    return string
 
 @app.route("/form", methods=['GET', 'POST'])
 def returned_template():
@@ -25,5 +26,6 @@ def returned_template():
 
 @app.route("/WR_step2", methods=['GET','POST'])
 def wr_step2():
-    placeholders = aquire_placeholders('documents/template.txt')
+    path = f'documents/{request.form["path"]}'
+    placeholders = aquire_placeholders(path)
     return render_template("WR_step2.html", placeholders=placeholders)

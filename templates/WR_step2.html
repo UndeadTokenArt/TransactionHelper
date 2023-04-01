@@ -9,7 +9,7 @@
     <h1>Word replacement</h1>
     <br>
     <form action="result" method="POST">
-        <lable for="path">Please Fill out what words will replace the placeholders</lable>
+        <h2>Please Fill out what words will replace the placeholders</h2>
         <br>
         {% for placeholder in placeholders %}
         <lable for="{{ placeholder }}">{{placeholder}}</lable>
@@ -17,7 +17,7 @@
         <br>
         {% endfor %}
         <br>
-        <input type="submit" value="Submit" id="result">
+        <input type="submit" value="Submit">
     </form>
 </body>
 </html>

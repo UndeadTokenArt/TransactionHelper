@@ -32,12 +32,16 @@ def opendoc(path):
         return f.read()
 
 # word replacement function, takes word to replace with, placeholder to change and path of document
-def word_replacer(arg1, arg2):
-        doc = opendoc('/documents/template.txt')
+def word_replacer(arg1, arg2, path):
+        doc = opendoc(path)
         words = doc.split()
+        
+        
         for i in range(len(words)):
             if words[i] == arg2:
                 words[i] = arg1
+
+
         return " ".join(words)
 
 # finds a placeholder word in a string and returns a list of all words found
@@ -51,6 +55,6 @@ def get_docs_list():
     doc_list = [f.name for f in os.scandir(folder_path) if f.is_file()]
     return doc_list
 
-print(aquire_placeholders('documents/template.txt'))
+
 # get a list of all the text files in the format folder
 # make a dictionary that holds a value for replacing words and what words are being replaced.
