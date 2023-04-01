@@ -1,0 +1,334 @@
+Purchase Timeline template
+Terms 
+Property Address :   [Address]
+Sales Price : $[Sales Price]
+Mutual Acceptance:   [Acceptance Date]
+Day 1 of timeline:  [Date of Time Line]
+Closing Date : [Closing Date]
+Possession date :   [Possession Date]
+
+Earnest Money
+Earnest Money Deposit : $[Earnest Money Amount]
+Earnest money Due : [Earnest Money Due Date]
+
+Inspections
+Inspection Deadline : [Inspection Deadline]
+Inspections : [Inspections Dates]                                            
+
+
+Other Terms
+Down payment: [Down payment]
+Loan type : [Loan type]
+Home Warranty : [Home Warranty]
+Personal Property included : [Personal Property included]
+Additional  provisions /Notes : 
+	[Additional  provisions /Notes]
+
+Contact Info
+Buyers :	[Buyer One - First Name] [Buyer One - Last Name] and [Buyer Two - First Name] [Buyer Two - Last Name]
+		  
+Sellers:	[Seller One - First Name] [Seller One - Last Name] and [Seller Two - First Name] [Seller Two - Last Name]
+
+Buyers Broker :  
+[Buyer Brokers Name]
+[Buyer Brokers Email]
+[Buyer Brokers Number]
+
+
+
+Sellers Broker : 
+[Seller Brokers Name]
+[Seller Brokers Email]
+[Seller Brokers Number]
+
+
+Lender : 
+[Lenders Name]
+[Lenders Number]
+[Lenders Email]
+
+Escrow agent :
+[Escrow Name]
+[Escrow Company]
+[Escrow Number]
+[Escrow Email]
+
+
+
+
+
+
+
+
+			
+
+
+
+
+Preliminary Title Report email
+
+Hello again
+[b1First] [b1Last] and [b2First] [b2Last] 
+[s1First] [s1Last] and [s2First] [s2Last]
+
+I  have received your title report from escrow and I have attached it here for your records ( hopefully you got a copy too but this is just in case it didn’t get to you ). Please be sure to review the information for accuracy. If it seems like something is not correct on the report , we’d be happy to chat with you about it! If you have any follow up questions you can reach your title officer [EscrowName] by phone at [EscrowNumber] or email at [EscrowEmail]. They will be able to more fully help you with any questions or concerns you may have.
+
+The biggest thing to note is that:
+
+Thanks,
+
+ALTERNATE - Your title report is in and there are a few things to note. 
+
+Buyer offer overview Email
+
+I am about to send over your offer on [Address]! 
+
+Just for a quick overview we have:
+ purchase price of [SalesPrice]
+. 
+Closing on [ClosingD] with possession 45 days after closing, 
+with [EMoneyAMT] Earnest money, 
+a [LoanTYP] loan, 
+5% down (this is just a placeholder, you can decide to do more or less later with your lender and that is ok ), 7 days for inspections, 
+The appliances we saw today included: [PPInclude]. 
+And it expires tomorrow at 11am.
+
+We have an inspection contingency, financing contingency, appraisal contingency, and title contingency all built in to protect you.You don’t have to sign up for docusign to sign this, just use the link that says review and sign. If you have any questions at all feel free to give me a call.
+
+I have also attached the seller's disclosures to be signed. This document is a statement of what the Sellers know about their home, from their perspective and in their own understanding. Your initials and signatures merely acknowledge receipt of the Seller’s statement, and in no way acknowledges compliance or approval of the information contained in the disclosures. I have looked through it as well but if you have any questions let me know. 
+
+Lastly there are a number of documents that my company requires that I have attached as well just to get them out of the way here is a brief overview:
+
+Covid release - This just states that you understand  the risks of seeing homes during covid 19  
+Buyer Advisory  - this goes over briefly the aspects of a transaction and gives resources for more information
+
+Disclosed Limited Agency - This states Hasson’s position as a brokerage and who you are represented by.
+Important info on water intrusion -  this one talks about water intrusions and some of the issues that come along with that.
+
+Wire fraud advisory - Wire fraud is a preventable issue .  Please make sure you confirm all wiring instructions with your escrow officer.
+
+Again this is a brief overview, please take a look at them for yourself and let me know if you have any questions I'm happy to go through them. 
+
+If you would like to write a personal letter to the sellers that is also very helpful and I would be happy to include it when I submit your offer. 
+
+Thanks! 
+
+Offer Email Template
+
+Thank you for letting me show you're beautiful listing on [Address]!
+It’s an excellent fit for my buyers. They absolutely love it and can see raising their family here and loving this home for a long time to come. They love the open floor plan, high ceilings and all the natural light. They have tons of great ideas for updating it a little bit down the road.
+
+Overview: [SalesPrice]
+Closing on [ClosingD]
+[EMoneyAMT] Earnest money 
+[LoanTYP] Loan 
+[DownPayment] down 
+10  day inspections 
+[PPInclude]
+EXPIRING tomorrow at 11pm. 
+
+My buyers are very excited for the opportunity to purchase this house and are in
+excellent financial position to bring this transaction to a close smoothly. They
+are lending with [Lender] at [LenderComp], who has a
+great local reputation with over 15 years experience in the business and has a
+proven track record of closing deals on schedule. He would be happy to vouch
+for our strong credentials.
+
+A little about me. I have been in Real Estate for about 5 years now. I recently left the number one team in the state to branch out on my own. I closed around 200 transactions last year with them.  I also have all five Star reviews on Zillow.  I work hard to make every transaction as smooth as possible and I would really love to work with you. I believe in open communication and with a little creative problem solving any issue can be resolved. I have tons of experience helping buyers and sellers through the process of buying a home.
+
+Please let me know if you have any questions at all. 
+
+Thanks!
+
+Offer Email to Seller Agent
+
+Hello [sBrokerName],
+ 
+It is my pleasure to present your seller [s1First] [s1Last] and [s2First] [s2Last] with this great offer for his house at [Address].
+ 
+My buyers [b1First] [b1Last] and
+[b2First] [b2Last] are very excited for the opportunity to purchase this house and are in excellent financial position to bring this transaction to a close smoothly. They are lending with [Lender] at [LenderComp], who has a great local reputation with over 15 years experience in the business and has a proven track record of closing deals on schedule. He would be happy to vouch for [b1First] and [b2First] strong credentials.
+ 
+After looking at over a dozen homes, [b1First] and [b2First] are so excited to have finally found one that is the right fit for their family. They are very impressed with the care and detail that [s1First] and [s2First] has put into his place.
+
+Buyer Property Disclosures Receipt Email
+
+Hey guys, 
+
+I have received the Property Disclosure Statement from the Sellers, and have attached it to this email for you to review. This document is a statement of what the Sellers know about their home, from their perspective and in their own understanding. Your initials and signatures merely acknowledge receipt of the Seller’s statement, and in no way acknowledges compliance or approval of the information contained in the disclosures. I have reviewed these disclosures and would be happy to chat and  go over all the details if you would like. I will also  send you the disclosures to sign via DocuSign. If at any point you have any questions, please don’t hesitate to reach out!
+
+Thanks,
+
+Escrow Introductions: 
+
+Hello [b1First] and [b2First] and [EscrowName], 
+
+[b1First] and [b2First], this is [EscrowName], your escrow officer who will be helping with the purchase of your new home! Becky is super helpful, and will be available to answer any questions you might have about the escrow process. You will be wiring your earnest money to her at [EscrowComp]. She will be contacting you directly regarding your wiring instructions, and can totally help you with that if you have any questions. 😊
+
+[EscrowName], this is [b1First] and [b2First], our buyers for [Address]
+! Thank you so much for contacting them with wiring instructions. 😊
+
+Thanks everyone!
+
+Preliminary Title Report email 
+
+Hello again, 
+
+I  have received your title report from escrow and I have attached it here for your records ( hopefully you got a copy too but this is just in case it didn’t get to you). Please be sure to review the information for accuracy. If it seems like something is not correct on the report , we’d be happy to chat with you about it! If you have any follow up questions you can reach your title officer [EscrowName] by phone at [EscrowNumber] or email at  [EscrowEmail]. They will be able to more fully help you with any questions or concerns you may have.
+
+The biggest thing to note is that:
+
+Thanks,
+
+Escrow new file Email:
+
+Hello [EscrowName], 
+
+My name is Audrey Moore. Over the weekend my buyer won a home on [Address] and the listing agent had you listed as the preferred escrow agent. So now I have a new transaction for you! I have attached the full contract and escrow instructions for your records.
+
+Buyers contact :
+Name - [b1First] [b1Last] and [b2First] [b2Last]
+Cell - 
+Email - 
+ 
+I will send a separate email soon introducing you to our buyer, so that you will have their email handy for wiring instructions. :)  He is a first time buyer and may need some extra help. I know they want to get their earnest money ASAP. 
+ 
+Let me know if there is anything else you need!
+ 
+I look forward to working with you!
+
+Agent timeline :
+
+Good morning [sBrokerName]! 
+
+First off I am so looking forward to working with you both and my buyers are thrilled as well.
+
+Date of Mutual Acceptance: [AcptDate]
+Property Address: [Address]
+Closing Date: {ClosingD]
+Possession Date: [PossDate]  5pm, 15 days after closing
+Sales Price: $[SalesPrice]
+EM Amount: $[EMoneyAMT]
+Commission to Coop Agent: 2.5% - $16,375
+Additional Provisions: [AddPro]
+Personal Property included: [PPInclude]
+
+Seller to have option to rent back from buyer for up to 45 days after closing. First 15 days to be at no cost to the seller, additional 30 days to be at buyers PITI.
+Buyer acknowledges receipt of previous inspections and agrees to take home as is with no repairs from the seller. 
+
+EM Due Date: [EMoneyDate]
+Inspection End Date: [InspectDead]
+Home Warranty: [HomeWar]
+Lender Information: 
+[Lender]
+[LenderComp]
+[LenderNumber]
+[LenderEmail]
+
+
+Escrow Company Information:
+[EscrowName]
+[EscrowComp]
+5885 Meadows Rd Ste 150, Lake Oswego, OR 97035
+[EscrowNumber]
+[EscrowEmail]
+
+I have scheduled the home inspection and radon testing for Monday, Feb 1st at 8:00am.  The sewer scope is scheduled for the same time both with Integrity Home Inspections. At this point my buyers don't think they can attend so if we could get a code we would really appreciate that.
+
+I saw that you opened escrow with [EscrowName], thank you. I think the only thing I need at the moment is :
+	- the signed addendum with the price increase
+	- the past radon results if they can be found
+	- the previous tank search
+
+Do my dates look correct? If my dates don’t match yours, please let me know.
+
+
+If you have any questions, or if there is anything else you need, feel free to let me know!
+ 
+Thanks so much,
+
+Option B - 
+
+Good morning [sBrokerName] ! 
+
+Thank you so much for accepting our offer.  First off I am so looking forward to working with you both and my buyers are thrilled as well.
+
+Attached you will find our transaction timeline. Please take a moment to review it and let us know if our dates / info matches yours.  
+
+We have scheduled the home inspection and radon testing for [InspectDate].  The sewer scope is scheduled for the same time both with Integrity Home Inspections.
+
+I have opened escrow with [EscrowName] at [EscrowComp]; her contact info is [EscrowEmail] and [EscrowNumber]. 
+
+I think the only things I need at the moment are :
+	- the signed addendum with the price increase
+	- the past radon results if they can be found
+	- the previous tank search
+
+If you have any questions, or if there is anything else you need, feel free to let me know as well !
+ 
+Thanks so much,
+
+Lender Email  ( for Quicken ):
+
+Hello Rosie!
+
+My name is Audrey Moore, I'm the Rocket Pro Agent that has been working with Jordan Styner. We found a great home this weekend and I'm happy to say that we are in contract! Woohoo! 
+
+Here is the escrow contact :
+[EscrowName]
+[EscrowComp]
+[EscrowNumber]
+[EscrowEmail]
+ 
+ I have attached the contract as well the listing and the offer extension addendum. 
+
+A have a few questions for you:
+Jordan mentioned that you had talked about an escrow deposit of 4k …. We have 3k for earnest money in the contract , Will that be a problem? He is worried that he might need to do more but he wasn’t clear on if that was the case. 
+The property has multiple tax lots but they are all one property…. Will that be a problem with the FHA loan ? Do you need anything for that ?
+
+I would love to chat over the phone and introduce myself if you have some time . Please let me know if there is anything else you need. 😊
+ 
+Thanks,
+
+BUYERS TIMELINE :
+Hey guys! 
+
+I'm so very excited for you! As you know everything has been signed and accepted - congratulations! I have opened escrow and will connect you with them as well. Here is a brief timeline that shows what to expect on our way to closing, and when it's due:
+
+Date of Mutual Acceptance: [AcptDate]
+Property Address: [Address]
+Closing Date: [ClosingD]
+Possession Date: 5pm on [PossDate]
+Sales Price: $[SalesPrice]
+Earnest Money Amount: $[EMoneyAMT]
+EM Due Date: [EMoneyDate]
+Additional Inspection End Date: [InspectDead]
+Home Warranty: [HomeWar]
+Personal Property included: [PPInclude]
+Seller to have option to rent back from buyer for up to 45 days after closing. First 15 days to be at no cost to the seller, additional 30 days to be at buyers PITI.
+Buyer acknowledges receipt of previous inspections and agrees to take home as is with no repairs from the seller. 
+
+
+To be helpful to you, I have gone ahead and scheduled the home inspection with my favorite home inspector: Caleb at Integrity Home Inspection. Your inspection is scheduled for: [InspectDate] at 12:34PM, and includes a full home inspection and Radon Drop off. A sewer scope and radon pick up will be performed on Wednesday the 10th at 12:30. If you do plan on attending the inspection, please let me know and arrive at 12:00pm. The inspections usually begin on the outside of the home, and if you come a little behind the inspector, you won’t have to stand around outside before the inside inspection begins. I will be there to make sure everything goes well and receive the full report within 24 hours. If this scheduled time does not work for you, or if you would like to use someone else for the inspection, please let me know. I would be happy to reschedule for you.
+
+Your estimated cost for this inspection is $709; $469 for the complete inspection and $135 for the sewer scope, $125 for the radon and a $20 discount for bundling the 3. You can remit payment directly to Kim over the phone at your earliest convenience; we will need payment before I can receive the home inspection report back from the inspector. They accept all major credit cards - their phone number is (503)246-5076. They will also send you a way to pay online.
+
+Your earnest money check is to be a sum of $[EMoneyAMT] made out to [EscrowComp]. You have 3 options for depositing you funds:
+1. Wire transfer
+2. Drop off a check at any FATCO company if that is easiest for you , just make sure to reference the Summers Address :) .
+3. Some title companies now have an app for funds transfer they will email you about this.
+
+I will have the gals over at Title send your wire instructions to you directly. When you receive an email with wiring instructions, please confirm the instructions by first calling your escrow office directly. Please make sure to wire your earnest money before [EMoneyDate] by 5pm. 
+
+I have attached your sale agreement and all the docs you have signed so far for your records. As well as a printable version of this timeline.
+
+I know this is a lot of information all at once , here is a quick overview
+
+NEXT STEPS :
+Deposit earnest money by - [EMoneyDate]
+Get all documents into your lender ASAP - I know you mentioned you already started this. 
+Home Inspections scheduled for - [InspectDate] at 11:30am arrive at 12:00pm if you want to attend
+Repair requests due by - 2/19
+
+If you have any questions about any of the information above or anything at all, please let me know.  Thank you! 
+

@@ -8,17 +8,9 @@
 <body>
     <h1>Transaction Helper</h1>
     <br>
-    <form action="greet" method="POST">
-        {% for message in get_flashed_messages() %}
-             <p>{{ message }}</p>
-         {% endfor %}
-        <br>
-        <input type="text" name="name_input">
-        <br>
-        <input type="submit" value="Submit" id="greet">
-        <br>
-        </a>
+    <form action="WR_step1" method="POST">
+        <input type="submit" value="Word Replacement">
     </form>
-    <a href="/form">Text replacer</a>
+
 </body>
 </html>

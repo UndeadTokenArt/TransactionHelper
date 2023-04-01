@@ -31,23 +31,21 @@ def opendoc(path):
     with open(path, "r") as f:
         return f.read()
 
-# word replacement function, takes word to replace with, placeholder to change and path of document
-def word_replacer(arg1, arg2, path):
-        doc = opendoc(path)
-        words = doc.split()
-        
-        
-        for i in range(len(words)):
-            if words[i] == arg2:
-                words[i] = arg1
+# word replacement function, takes a dictionairy from a form and the path
+def word_replacer(replacements, path):
+    with open(path, 'r') as f:
+        content = f.read()
 
-
-        return " ".join(words)
+    # Replace the words in the content using the replacements dictionary
+    for key, value in replacements.items():
+        content = content.replace(key, value)
+    return content
 
 # finds a placeholder word in a string and returns a list of all words found
 def aquire_placeholders(path):
     doc = opendoc(path)
-    return set(re.findall(r'\[[^\]]*\]', doc))
+    pattern = r'\[[^\]]*\]'
+    return set(re.findall(pattern, doc))
 
 
 def get_docs_list():

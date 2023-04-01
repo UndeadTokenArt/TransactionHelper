@@ -10,22 +10,22 @@ def hello_world():
 
 @app.route("/result", methods=['GET', 'POST'])
 def result():
-    path = request.path
-    working = True
-    while working:
-        for key, value in request.form.items():
-            string = word_replacer(value, key, path)
-            working = False
-    return string
+    path = f'documents/{request.form["path"]}'
+    replacements = request.form.to_dict()
+    
+    # return request.form.to_dict()
+    
+    return word_replacer(replacements, path)
 
-@app.route("/form", methods=['GET', 'POST'])
+@app.route("/WR_step1", methods=['GET', 'POST'])
 def returned_template():
     doc_list = get_docs_list()
-    return render_template("form.html", doc_list=doc_list)
+    return render_template("WR_step1.html", doc_list=doc_list)
 
 
 @app.route("/WR_step2", methods=['GET','POST'])
 def wr_step2():
+    passable = request.form["path"]
     path = f'documents/{request.form["path"]}'
     placeholders = aquire_placeholders(path)
-    return render_template("WR_step2.html", placeholders=placeholders)
+    return render_template("WR_step2.html", placeholders=placeholders, passable=passable)
