@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, flash
 from main import word_replacer, get_docs_list, aquire_placeholders
+import markdown
 
 app = Flask(__name__)
 
@@ -12,10 +13,12 @@ def hello_world():
 def result():
     path = f'documents/{request.form["path"]}'
     replacements = request.form.to_dict()
-    
-    # return request.form.to_dict()
-    
-    return word_replacer(replacements, path)
+    new_filename = word_replacer(replacements, path)
+    with open(new_filename, "r") as f:
+        display = markdown.markdown(f.read()) 
+        
+        #return display
+        return render_template("result.html", display=display)
 
 @app.route("/WR_step1", methods=['GET', 'POST'])
 def returned_template():

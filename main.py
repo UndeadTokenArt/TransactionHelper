@@ -39,13 +39,26 @@ def word_replacer(replacements, path):
     # Replace the words in the content using the replacements dictionary
     for key, value in replacements.items():
         content = content.replace(key, value)
-    return content
+
+    # Create a new filename for the modified file
+    filename, ext = os.path.splitext(path)
+    new_filename = "modified/" + filename + '_modified' + ext
+
+    # Write the modified content to the new file
+    with open(new_filename, 'w') as f:
+        f.write(content)
+
+    return new_filename
 
 # finds a placeholder word in a string and returns a list of all words found
 def aquire_placeholders(path):
     doc = opendoc(path)
     pattern = r'\[[^\]]*\]'
-    return set(re.findall(pattern, doc))
+    my_list = list(set(re.findall(pattern, doc)))
+    my_list.sort()
+    
+    return my_list
+    # return set(re.findall(pattern, doc))
 
 
 def get_docs_list():
@@ -53,6 +66,4 @@ def get_docs_list():
     doc_list = [f.name for f in os.scandir(folder_path) if f.is_file()]
     return doc_list
 
-
-# get a list of all the text files in the format folder
-# make a dictionary that holds a value for replacing words and what words are being replaced.
+print(aquire_placeholders("documents/template.md"))
