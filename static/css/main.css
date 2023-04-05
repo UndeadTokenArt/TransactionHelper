@@ -5,6 +5,12 @@ body {
 h1 {
     color: lightgray;
 }
+h2 {
+    color: lightgray;
+}
+h3 {
+    color: lightgray;
+}
 p {
     text-align: left;
     color: white;

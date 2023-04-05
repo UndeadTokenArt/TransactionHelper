@@ -2,21 +2,9 @@ import re
 import gspread
 from google.oauth2.service_account import Credentials
 import os
+import ast
 
-'''
-Code used for connecting the google account Oauth stuff _ not ready yet 
-
-
-# Load credentials from the JSON key file
-creds = Credentials.from_service_account_file('path/to/key.json')
-
-# Authenticate with gspread
-client = gspread.authorize(creds)
-
-# Open the spreadsheet by name
-sheet = client.open('Spreadsheet Name').sheet1
-'''
-
+# this fucntion doesn't actually do anything yet, just the idea of what I want it to do.
 def start_gspread():
     gc = gspread.service_account()
     try:
@@ -42,13 +30,25 @@ def word_replacer(replacements, path):
 
     # Create a new filename for the modified file
     filename, ext = os.path.splitext(path)
-    new_filename = "modified/" + filename + '_modified' + ext
+    new_filename = filename + '_modified' + ext
 
     # Write the modified content to the new file
     with open(new_filename, 'w') as f:
         f.write(content)
 
     return new_filename
+
+
+# Function should save a document, and return the path and filename
+def write_paired_list(path, data):
+    filename, ext = os.path.splitext(path)
+    new_filename = filename + '_Data' + ext
+
+    # Write the modified content to the new file
+    with open(new_filename, 'w') as f:
+        f.write(str(data))
+    return new_filename
+
 
 # finds a placeholder word in a string and returns a list of all words found
 def aquire_placeholders(path):
@@ -61,9 +61,21 @@ def aquire_placeholders(path):
     # return set(re.findall(pattern, doc))
 
 
+# checks a dictionairy for a match in a list. returns the a new_dictionairy with only matching keys to the list
+def check_for_match(my_list, dict_path):
+    my_dict = ast.literal_eval(opendoc(dict_path))
+    new_dict = {}
+    for key, value in my_dict.items(): 
+        if key in my_list:
+            new_dict[key] = value
+    return new_dict
+
+
 def get_docs_list():
     folder_path = 'documents'
     doc_list = [f.name for f in os.scandir(folder_path) if f.is_file()]
     return doc_list
 
-print(aquire_placeholders("documents/template.md"))
+
+
+print(check_for_match(aquire_placeholders('documents/template.md'), 'documents/template_Data.md'))

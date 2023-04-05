@@ -12,9 +12,13 @@
         <h2>Please Fill out what words will replace the placeholders</h2>
         <br>
         {% for placeholder in placeholders %}
-        <lable for="{{ placeholder }}">{{placeholder}}</lable>
-        <input type="text" id="{{ placeholder }}" name="{{ placeholder }}">
-        <br>
+            <label for="{{ placeholder }}">{{ placeholder }}</label>
+            {% if placeholders[placeholder] %}
+                <input type="text" id="{{ placeholder }}" name="{{ placeholder }}" value="{{ placeholders[placeholder] }}">
+            {% else %}
+                <input type="text" id="{{ placeholder }}" name="{{ placeholder }}">
+            {% endif %}
+            <br>
         {% endfor %}
         <br>
         <input type="hidden" name="path" value="{{ passable }}">
