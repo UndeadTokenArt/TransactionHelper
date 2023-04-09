@@ -4,6 +4,57 @@ from google.oauth2.service_account import Credentials
 import os
 import ast
 
+#this should be the way that we keep track of things in the transaction.
+class Transaction:
+    def __init__(self) -> None:
+        self.__address = None
+        self.__client = {
+            'first_client_name': None, 
+            'second_client_name': None,
+            'third_client_name': None,
+            'fourth_client_name': None
+        }
+        self.__inspection_days = {}
+        self.__closing_date = None
+        self.__rentback = None
+
+        # get and set for address
+        def get_address(self):
+            return self.__address
+        
+        def set_address(self, address):
+            self.__address = address
+        
+        #gets the client in the position of the dictionary, 
+        def get_client(self, position):
+            return self.__client[position] 
+        
+        def set_client(self, client, name):
+            self.__client[client] = name
+
+        # get and set for inspection days 
+        def get_insp(self):
+            return self.inspection_days
+        
+        def set_insp(self, start, length):
+            self.__inspection_days[start] = start
+            self.__inspection_days[length] = length
+
+        #get and set for the expected closing day
+        def get_closing(self):
+            return self.__closing_date
+        
+        def set_closing(self, date):
+            self.__closing_date = date
+
+        #get and set for the rent back final day
+        def get_rentback(self):
+            return self.__rentback
+        
+        def set_rentback(self, date):
+            self.__rentback = date
+
+
 # this fucntion doesn't actually do anything yet, just the idea of what I want it to do.
 def start_gspread():
     gc = gspread.service_account()
@@ -75,7 +126,3 @@ def get_docs_list():
     folder_path = 'documents'
     doc_list = [f.name for f in os.scandir(folder_path) if f.is_file()]
     return doc_list
-
-
-
-print(check_for_match(aquire_placeholders('documents/template.md'), 'documents/template_Data.md'))

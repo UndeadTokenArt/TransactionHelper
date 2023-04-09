@@ -1,6 +1,6 @@
 Dear BillZ,
 
-I am thrilled to inform you that we are officially listing your stunning 13936 Ne Glisan St home on the market! It has been an absolute pleasure to work with you throughout this process, and I can't thank you enough for trusting me with the sale of your beautiful property.
+I am thrilled to inform you that we are officially listing your stunning 14825 SE 119th Ave home on the market! It has been an absolute pleasure to work with you throughout this process, and I can't thank you enough for trusting me with the sale of your beautiful property.
 
 As your dedicated real estate broker, I am excited to help you achieve your goals and make the selling process as smooth and stress-free as possible. I truly believe that this journey should be an enjoyable one, and I am here to make that a reality for you.
 
@@ -12,5 +12,5 @@ Thank you again for the opportunity to work with you on this exciting journey. I
 
 Best regards,
 
-Stephen C Moore
+Audrey moore
 Windermere
