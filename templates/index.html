@@ -9,9 +9,14 @@
     <h1>Transaction Helper</h1>
     <br>
     <form action="WR_step1" method="POST">
-        <h2> profile_name </h2>
+        <h2> {% print(google_login_email) %} </h2>
         <input type="submit" value="Word Replacement">
     </form>
-
+    <form action="login" method="GET">
+        <input type="submit" value="Login">
+    </form>
+    <form action="logout" method="GET">
+        <input type="submit" value="Logout">
+    </form>
 </body>
 </html>

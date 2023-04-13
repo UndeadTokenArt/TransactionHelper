@@ -4,10 +4,13 @@ from authlib.integrations.flask_client import OAuth
 import markdown
 import os
 from datetime import timedelta
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
 
 
 app = Flask(__name__)
-app.secret_key = "th!s!zs0r@nb0w"
+app.secret_key = os.getenv("APP_SECRET_KEY")
 #  app.config['SESSION_COOKIE_NAME'] = 'google-login-session'
 #  app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
 
@@ -16,22 +19,25 @@ app.secret_key = "th!s!zs0r@nb0w"
 oauth = OAuth(app)
 oauth.register(
     name='google',
-    client_id="821893840051-q7e7ku9nvl22mtirc344qsf2o1nbvka9.apps.googleusercontent.com",
-    client_secret="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",
+    client_id=os.getenv("GOOGLE_CLIENT_ID"),
+    client_secret=os.getenv("GOOGLE_CLIENT_SECRET"),
     access_token_url='https://accounts.google.com/o/oauth2/token',
     access_token_params=None,
     authorize_url='https://accounts.google.com/o/oauth2/auth',
     authorize_params=None,
     api_base_url='https://www.googleapis.com/oauth2/v1/',
     userinfo_endpoint='https://openidconnect.googleapis.com/v1/userinfo',  # This is only needed if using openId to fetch user info
-    client_kwargs={'scope': 'email profile'},
+    client_kwargs={
+    'scope': 'email profile https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/spreadsheets',
+}
 )
 
 @app.route("/")
 def hello_world():
-    return render_template("index.html")
+    google_login_email = "Your Email here"
+    return render_template("index.html", google_login_email=google_login_email)
 
-@app.route('/login')
+@app.route('/login', methods=['GET'])
 def login():
     google = oauth.create_client('google')  # create the google oauth client
     redirect_uri = url_for('authorize', _external=True)
@@ -50,7 +56,7 @@ def authorize():
     session.permanent = True  # make the session permanant so it keeps existing after broweser gets closed
     return redirect('/')
 
-@app.route('/logout')
+@app.route('/logout', methods=['GET'])
 def logout():
     for key in list(session.keys()):
         session.pop(key)
