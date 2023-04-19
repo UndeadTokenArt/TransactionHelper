@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction Helper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <h1>New client</h1>
+    <form action="tools" method="POST">
+        <label for="id">I.D.</label>
+		<input type="text" id="id" name ="id"><br><br>
+
+		<label for="address">Address:</label>
+		<input type="text" id="address" name="address"><br><br>
+
+		<label for="first_client_name">First Client Name:</label>
+		<input type="text" id="first_client_name" name="first_client_name"><br><br>
+
+		<label for="second_client_name">Second Client Name:</label>
+		<input type="text" id="second_client_name" name="second_client_name"><br><br>
+
+		<label for="third_client_name">Third Client Name:</label>
+		<input type="text" id="third_client_name" name="third_client_name"><br><br>
+
+		<label for="fourth_client_name">Fourth Client Name:</label>
+		<input type="text" id="fourth_client_name" name="fourth_client_name"><br><br>
+
+		<label for="inspection_days">Inspection Days:</label>
+		<input type="text" id="inspection_days" name="inspection_days"><br><br>
+
+		<label for="closing_date">Closing Date:</label>
+		<input type="text" id="closing_date" name="closing_date"><br><br>
+
+		<label for="rentback">Rent Back:</label>
+		<input type="text" id="rentback" name="rentback"><br><br>
+
+		<input type="submit" value="Submit" action="/tools">
+	</form>
+    <br>
+    <form action="/" method="GET">
+        <input type="submit" value="Home" action="/" >
+    </form>
+
+</body>
+</html>

@@ -1,13 +1,7 @@
-[ ] handles account information for google sheets to be inserted in Authentication function later
-[ ] Authentication of credentials with google sheets
-[ ] opens spread sheet or creates one if one is not choosen
-[*] function that makes a list of placeholder words and make sure there are no duplicates
-[ ] function that makes a spread sheet that will have placeholders in one column
-[ ] function that saves the document
-[ ] function that combines first and last names into one string
-[ ] function that connects to google drive?????
-[ ] function that prompts for matching the replacment word with the placeholder
-[ ] function that asks if there are more than one set of names to be used in the contract[ ]
-[ ] figure out how to ignore dependancy when commiting to git
-[*] Add flask and set up main page to load when server is running
-[*] Add template files for HTML and a CSS style sheet
+import a list of documents from the drive folder specified.
+
+
+okay, here is what we are working on.
+
+on main.py, we are trying to implement a function that dynamically builds an object based on the field generated from a form on the "new client.html" page. The object can grow with new attributes as needed. I am not convinced that we need it to be an object or just a dictionary of the information gathered. I think it would be great to use a object to store the data, but the more I think about it, I am wondering if a simple dictionairy would suffice for my needs. it might even be cleaner cause it can grow and shrink as needed.
+mostly what we are trying to do is get the information gathered from the new_client.html page to pass into the rest of the website and save the client information for future uses in tools that we have created. them we could export them into a google document or google sheet for later use. Then after that, we will work on importing info from google drive to be edited by our custom tool set.

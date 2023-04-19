@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, url_for, redirect, session
-from main import word_replacer, get_docs_list, aquire_placeholders, write_paired_list, check_for_match
+from main import word_replacer, get_docs_list, aquire_placeholders, write_paired_list, check_for_match, my_client
 from authlib.integrations.flask_client import OAuth
 import markdown
 import os
@@ -89,5 +89,19 @@ def wr_step2():
     dict_path = filename + '_Data' + ext
     if os.path.isfile(dict_path):
         placeholders = check_for_match(placeholders, dict_path)
-    
     return render_template("WR_step2.html", placeholders=placeholders, passable=passable)
+
+@app.route('/new_client', methods=['GET'])
+def new_client():
+    return render_template('new_client.html')
+
+@app.route('/existing_client', methods=['GET'])
+def existing_client():
+    return render_template('existing_client.html')
+
+@app.route('/tools', methods=['GET', 'POST'])
+def tools(): 
+    client_object_name = request.form['id']
+    details = my_client(client_object_name)
+    return render_template("tools.html", details=details)
+
