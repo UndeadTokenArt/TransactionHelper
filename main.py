@@ -1,6 +1,6 @@
 import re
-import gspread
-from google.oauth2.service_account import Credentials
+# Do I need this line???  from google.oauth2.service_account import Credentials
+from google.oauth2 import service_account
 import os
 import ast
 
@@ -22,23 +22,6 @@ class Transaction:
         self.closing_date = None
         self.rentback = None
         self.directory = None # Initialize here
-
-def my_client(client_object_name):
-    client_object_name = Transaction
-    attrs = dir(client_object_name)
-    for attr in attrs:    
-        client_object_name.attr = request.form[f'{attr}']
-
-
-
-# this fucntion doesn't actually do anything yet, just the idea of what I want it to do.
-def start_gspread():
-    gc = gspread.service_account()
-    try:
-        wks = gc.open("WordReplacemenmt").sheet1
-    except:
-        gc.create('WordReplacemenmt')
-        raise Exception("No sheet found, new one created")
         
 
 # opens a document in read mode
@@ -68,7 +51,6 @@ def word_replacer(replacements, path):
 # I want this fucntion to help get key and Value pairs
 def get_values(form_data):
     return None
-
 
 
 # Function should save a document, and return the path and filename
@@ -112,19 +94,3 @@ def get_docs_list():
 def set_client_details(details):
     for detail in details:
         return print(detail)
-
-def import_drive_docs(folder_id, credentials):
-    credentials = service_account.Credentials.from_service
-
-
-#testing for functionality
-
-
-'''
-billz = Transaction()
-billz.set_address('14825 SE 119th Clackamas OR')
-billz.set_client('first_client_name', 'Stephen Moore')
-print(billz.get_client('first_client_name'))
-'''
-
-

@@ -1,23 +1,25 @@
 from flask import Flask, render_template, request, flash, url_for, redirect, session
-from main import word_replacer, get_docs_list, aquire_placeholders, write_paired_list, check_for_match, my_client
+from main import word_replacer, get_docs_list, aquire_placeholders, write_paired_list, check_for_match
 from authlib.integrations.flask_client import OAuth
 import markdown
 import os
-from datetime import timedelta
 from dotenv import load_dotenv
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+
 
 load_dotenv()  # take environment variables from .env.
 
 
 app = Flask(__name__)
 app.secret_key = os.getenv("APP_SECRET_KEY")
-#  app.config['SESSION_COOKIE_NAME'] = 'google-login-session'
-#  app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
+app.config['SESSION_COOKIE_NAME'] = 'google-login-session'
 
 
 # oauth config
 oauth = OAuth(app)
-oauth.register(
+
+google = oauth.register(
     name='google',
     client_id=os.getenv("GOOGLE_CLIENT_ID"),
     client_secret=os.getenv("GOOGLE_CLIENT_SECRET"),
@@ -47,7 +49,7 @@ def login():
 def authorize():
     google = oauth.create_client('google')  # create the google oauth client
     token = google.authorize_access_token()  # Access token from google (needed to get user info)
-    resp = google.get('userinfo')  # userinfo contains stuff u specificed in the scrope
+    resp = google.get('userinfo')  # userinfo contains stuff u specificed in the scope
     user_info = resp.json()
     # user = oauth.google.userinfo()  # uses openid endpoint to fetch user info
     # Here you use the profile/user data that you got and query your database find/register the user
@@ -61,6 +63,29 @@ def logout():
     for key in list(session.keys()):
         session.pop(key)
     return redirect('/')
+
+@app.route('/new_client', methods=['GET'])
+def new_client():
+    # Build the Drive API client
+    credentials = session.get('authorization', None)
+    drive_service = build('drive', 'v3', credentials=credentials)
+
+    # Set folder metadata
+    folder_metadata = {
+        'name': 'My new folder',
+        'mimeType': 'application/vnd.google-apps.folder'
+    }
+
+    # Create the folder
+    try:
+        folder = drive_service.files().create(body=folder_metadata).execute()
+        print('Folder created: %s' % folder.get('webViewLink'))
+    except HttpError as error:
+        print('An error occurred: %s' % error)
+    return render_template('new_client.html')
+
+
+
 
 @app.route("/result", methods=['GET', 'POST'])
 def result():
@@ -91,9 +116,6 @@ def wr_step2():
         placeholders = check_for_match(placeholders, dict_path)
     return render_template("WR_step2.html", placeholders=placeholders, passable=passable)
 
-@app.route('/new_client', methods=['GET'])
-def new_client():
-    return render_template('new_client.html')
 
 @app.route('/existing_client', methods=['GET'])
 def existing_client():
@@ -102,6 +124,8 @@ def existing_client():
 @app.route('/tools', methods=['GET', 'POST'])
 def tools(): 
     client_object_name = request.form['id']
-    details = my_client(client_object_name)
+    # details = my_client(client_object_name)
+    # Calling to set up the client on the backend with the request form info
+    # new_client_setup(request.form['id'])
     return render_template("tools.html", details=details)
 

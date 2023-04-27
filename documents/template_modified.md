@@ -12,5 +12,5 @@ Thank you again for the opportunity to work with you on this exciting journey. I
 
 Best regards,
 
-Audrey moore
-Windermere
+Stephen C Moore
+Cool People
