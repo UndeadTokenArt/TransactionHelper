@@ -1,11 +1,9 @@
-from flask import Flask, redirect, url_for, session, render_template
+from flask import Flask, redirect, url_for, session, render_template, request
 from authlib.integrations.flask_client import OAuth
-from google.oauth2.credentials import Credentials
-import google.auth
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
 import os
 from dotenv import load_dotenv
+from main import word_replacer, get_docs_list, aquire_placeholders, write_paired_list, check_for_match
+import markdown
 
 load_dotenv()  # take environment variables from .env.
 
@@ -25,41 +23,32 @@ google = oauth.register(
     api_base_url='https://www.googleapis.com/oauth2/v1/',
     userinfo_endpoint='https://openidconnect.googleapis.com/v1/userinfo',
     client_kwargs={
-        'scope': 'https://www.googleapis.com/auth/drive',
-        'token_endpoint_auth_method': 'client_secret_post',
+        'scope': 'profile'
     },
 )
 
 @app.route("/")
-def hello_world():
-    email = session.get('profile')
+def index():
+    gprofile = session.get('profile')
+    email = gprofile
     return render_template("index.html", email = email)
 
 @app.route('/login')
 def login():
     redirect_uri = url_for('authorize', _external=True)
-    return google.authorize_redirect(redirect_uri, access_type='offline')
+    return oauth.google.authorize_redirect(redirect_uri)
 
 @app.route('/authorize')
 def authorize():
-    token = google.authorize_access_token(access_type='offline')
-    session['google_token'] = token
-
-    # Retrieve the refresh token from the token response
-    refresh_token = token.get('refresh_token')
-
-    # Use the refresh token to create a Credentials object
-    credentials = Credentials.from_authorized_user_info(
-        session['google_token'],
-        refresh_token=refresh_token,
-        client_id=os.getenv("GOOGLE_CLIENT_ID"),
-        client_secret=os.getenv("GOOGLE_CLIENT_SECRET"),
-        token_uri='https://oauth2.googleapis.com/token'
-    )
-
-    resp = google.get('userinfo')
-    session['profile'] = resp.json()
-    return session['google_token']          # redirect(url_for('create_folder'))
+    token = oauth.google.authorize_access_token()
+    session['google_token'] = {
+        'access_token': token['access_token'],
+        'scope' : token['scope'],
+        'client_id' : os.getenv("GOOGLE_CLIENT_ID"),
+        'client_secret' : os.getenv("GOOGLE_CLIENT_SECRET"),
+        'refresh_token' : None
+    }
+    return redirect('/')
 
 @app.route('/logout')
 def logout():
@@ -67,38 +56,106 @@ def logout():
         session.pop(key)
     return redirect('/')
 
+@app.route("/WR_step1", methods=['GET', 'POST'])
+def returned_template():
+    doc_list = get_docs_list()
+    return render_template("WR_step1.html", doc_list=doc_list)
 
 
-@app.route('/create_folder')
+@app.route("/WR_step2", methods=['GET','POST'])
+def wr_step2():
+    passable = request.form["path"]
+    path = f'documents/{request.form["path"]}'
+    filename, ext = os.path.splitext(path)
+    placeholders = aquire_placeholders(path)
+    dict_path = filename + '_Data' + ext
+    if os.path.isfile(dict_path):
+        placeholders = check_for_match(placeholders, dict_path)
+    return render_template("WR_step2.html", placeholders=placeholders, passable=passable)
+
+@app.route("/result", methods=['GET', 'POST'])
+def result():
+    path = f'documents/{request.form["path"]}'
+    replacements = request.form.to_dict()
+    write_paired_list(path, replacements)
+    new_filename = word_replacer(replacements, path)
+    with open(new_filename, "r") as f:
+        display = markdown.markdown(f.read()) 
+    
+        #return display
+        return render_template("result.html", display=display)
+
+
+@app.route('/add_doc', methods=['GET', 'POST'])
+def add_doc():
+        return render_template('add_doc.html')
+
+
+@app.route('/upload_f', methods=['GET', 'POST'])
+def add_file():
+    if request.method == 'POST':
+        # Get the uploaded file from the form
+        file = request.files['upload_file']
+
+        # Check if file is empty or not valid
+        if file.filename == '':
+            return render_template('add_doc.html', error='No file selected')
+        if not allowed_file(file.filename):
+            return render_template('add_doc.html', error='Invalid file type')
+
+        # Save the file to the documents directory
+        file.save(os.path.join('documents', file.filename))
+
+        # Redirect to the homepage or a success page
+        return redirect('/')
+    else:
+        # If request method is GET, render the form page
+        return render_template('add_doc.html')
+
+@app.route('/upload_t', methods=['GET', 'POST'])
+def add_text():
+    if request.method == 'POST':
+        # Get the text from the form
+        text = request.form['upload_ta']
+        file_name = request.form['file_name']
+
+        # Check if the text is not empty or invalid
+        if not text:
+            error = 'Please enter some text'
+            return render_template('add_doc.html', error=error)
+        
+        # Save the text to a file
+        with open(f'documents/{file_name}.txt', 'w') as f:
+            f.write(text)
+
+        # Redirect to the homepage or a success page
+        return redirect('/')
+    else:
+        # If request method is GET, render the form page
+        return render_template('add_doc.html')
+
+# Function to check if file type is allowed
+def allowed_file(filename):
+    ALLOWED_EXTENSIONS = {'txt'}
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+'''@app.route('/create_folder')
 def create_folder():
-    if 'google_token' not in session:
-        return redirect(url_for('login'))
-
-    # Load the user's credentials from the session
     credentials = Credentials.from_authorized_user_info(session['google_token'])
-
-    try:
-        # Use the Google Drive API to create a folder in the user's account
-        service = build('drive', 'v3', credentials=credentials)
-        folder_metadata = {'name': 'My Folder', 'mimeType': 'application/vnd.google-apps.folder'}
-        folder = service.files().create(body=folder_metadata, fields='id').execute()
-
-        return f'Folder created with ID: {folder.get("id")}'
-
-    except HttpError as error:
-        return f'An error occurred: {error}'
-
-
-    return 'Folder created!'
-
-
-
+    service = build('drive', 'v3', credentials=credentials)
+    file_metadata = {
+        'name': 'My Folder',
+        'mimeType': 'application/vnd.google-apps.folder'
+    }
+    folder = service.files().create(body=file_metadata, fields='id').execute()
+    return f'Folder created with ID: {folder.get("id")}'''
 '''
 from flask import Flask, render_template, request, flash, url_for, redirect, session
 from main import word_replacer, get_docs_list, aquire_placeholders, write_paired_list, check_for_match
 from authlib.integrations.flask_client import OAuth
-import markdown
-import os
+
 from dotenv import load_dotenv
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
@@ -214,34 +271,9 @@ def create_folder():
 
 
 
-@app.route("/result", methods=['GET', 'POST'])
-def result():
-    path = f'documents/{request.form["path"]}'
-    replacements = request.form.to_dict()
-    write_paired_list(path, replacements)
-    new_filename = word_replacer(replacements, path)
-    with open(new_filename, "r") as f:
-        display = markdown.markdown(f.read()) 
-    
-        #return display
-        return render_template("result.html", display=display)
-
-@app.route("/WR_step1", methods=['GET', 'POST'])
-def returned_template():
-    doc_list = get_docs_list()
-    return render_template("WR_step1.html", doc_list=doc_list)
 
 
-@app.route("/WR_step2", methods=['GET','POST'])
-def wr_step2():
-    passable = request.form["path"]
-    path = f'documents/{request.form["path"]}'
-    filename, ext = os.path.splitext(path)
-    placeholders = aquire_placeholders(path)
-    dict_path = filename + '_Data' + ext
-    if os.path.isfile(dict_path):
-        placeholders = check_for_match(placeholders, dict_path)
-    return render_template("WR_step2.html", placeholders=placeholders, passable=passable)
+
 
 
 @app.route('/existing_client', methods=['GET'])

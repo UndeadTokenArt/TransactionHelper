@@ -8,22 +8,19 @@
 <body>
     <h1>Transaction Helper</h1>
     <br>
-    <form action="WR_step1" method="POST">
-        <h2> Welcome {{ email }} </h2>
-        <input type="submit" value="Word Replacement">
-    </form>
+
     <form action="login" method="GET">
         <input type="submit" value="Login">
     </form>
     <form action="logout" method="GET">
         <input type="submit" value="Logout">
     </form>
-    <form action="create_folder" method="GET">
-        <input type="submit" value="Create folder">
+    <br><br>
+    <form action="add_doc" method="GET">
+        <input type="submit" value="Add Document">
     </form>
-    <form action="existing_client" method="GET">
-        <!-- This button should be turned into a list of all the previous clients sorted from newest to oldest but for now its a good reminder for me -->
-        <input type="submit" value="Existing Client">
+    <form action="WR_step1" method="GET">
+        <input type="submit" value="Word Replacement">
     </form>
 </body>
 </html>

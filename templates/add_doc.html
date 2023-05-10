@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction Helper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <h1>Transaction Helper</h1>
+    <br>
+
+    <form action="upload_f" method="POST" enctype="multipart/form-data">
+        <input type="file" name="upload_file">
+        <input type="submit" value="Submit">
+    </form>
+    
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    
+    <form action="upload_t" method="POST">
+        <input type="text" name="file_name">
+        <br>
+        <textarea name="upload_ta" rows="10" cols="150"></textarea>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    
+    
+    </form>
+</body>
+</html>
