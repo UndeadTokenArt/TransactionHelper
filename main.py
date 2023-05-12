@@ -88,6 +88,13 @@ def get_docs_list():
     doc_list = [f.name for f in os.scandir(folder_path) if f.is_file()]
     return doc_list
 
+def client_list():
+    folder_path = 'documents'
+    folder_list = [f.name for f in os.scandir(folder_path) if f.is_dir()]
+    folder_list.append('Clients List')
+    return folder_list
+
+
  # set each of the detail in details to their matching attrubute in the class transaction with the class being named after the value in the details list called Transactio_name
 def set_client_details(details):
     for detail in details:

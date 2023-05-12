@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for, session, render_template, request
 from authlib.integrations.flask_client import OAuth
 import os
 from dotenv import load_dotenv
-from main import word_replacer, get_docs_list, aquire_placeholders, write_paired_list, check_for_match
+from main import word_replacer, get_docs_list, aquire_placeholders, write_paired_list, check_for_match, client_list
 import markdown
 
 load_dotenv()  # take environment variables from .env.
@@ -27,11 +27,27 @@ google = oauth.register(
     },
 )
 
-@app.route("/")
+@app.route("/", methods=['GET','POST'])
 def index():
     gprofile = session.get('profile')
-    email = gprofile
-    return render_template("index.html", email = email)
+    list = client_list()
+    return render_template('index.html', client_list=list)
+
+# I am supposed to be making a vaiable that passes and sets up a new client dropdown box that shows on index and 
+# client_tools.html will use the client selected from that dropdown to make a directory if there isnt one yet for that client.
+
+
+
+@app.route('/client_tools', methods=['GET','POST'])
+def client_tools():
+    if request.method == 'POST':
+        client_name = request.form['client_name']
+        new_string = client_name.replace(' ', '')
+        dir_path = os.path.join('documents', new_string)
+        os.makedirs(dir_path, exist_ok=True)
+        return render_template("client_tools.html", client_name=new_string)
+    else:
+        return render_template('client_tools.html')
 
 @app.route('/login')
 def login():
@@ -88,7 +104,8 @@ def result():
 
 @app.route('/add_doc', methods=['GET', 'POST'])
 def add_doc():
-        return render_template('add_doc.html')
+        client_name = request.form['client_name']
+        return render_template('add_doc.html', client_name=client_name)
 
 
 @app.route('/upload_f', methods=['GET', 'POST'])
@@ -96,6 +113,7 @@ def add_file():
     if request.method == 'POST':
         # Get the uploaded file from the form
         file = request.files['upload_file']
+        client_name = request.form['client_name']
 
         # Check if file is empty or not valid
         if file.filename == '':
@@ -104,10 +122,10 @@ def add_file():
             return render_template('add_doc.html', error='Invalid file type')
 
         # Save the file to the documents directory
-        file.save(os.path.join('documents', file.filename))
+        file.save(os.path.join(f'documents/{client_name}', file.filename))
 
         # Redirect to the homepage or a success page
-        return redirect('/')
+        return redirect('/client_tools')
     else:
         # If request method is GET, render the form page
         return render_template('add_doc.html')
@@ -118,14 +136,17 @@ def add_text():
         # Get the text from the form
         text = request.form['upload_ta']
         file_name = request.form['file_name']
+        client_name = request.form['client_name']
 
         # Check if the text is not empty or invalid
         if not text:
             error = 'Please enter some text'
             return render_template('add_doc.html', error=error)
         
+        # save(os.path.join(f'documents/{client_name}', file.filename))
+        
         # Save the text to a file
-        with open(f'documents/{file_name}.txt', 'w') as f:
+        with open(f'documents/{client_name}/{file_name}.txt', 'w') as f:
             f.write(text)
 
         # Redirect to the homepage or a success page

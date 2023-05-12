@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tools</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <h1>Tools</h1>
+
+    <form action="add_doc" method="POST">
+        <input type="submit" value="Add Document">
+        <input type="hidden" name="client_name" value="{{ client_name }}">
+    </form>
+
+    <form action="WR_step1" method="GET">
+        <input type="submit" value="Word Replacement">
+    </form>
+    
+</body>
+</html>

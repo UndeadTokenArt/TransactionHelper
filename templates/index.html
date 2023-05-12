@@ -12,15 +12,21 @@
     <form action="login" method="GET">
         <input type="submit" value="Login">
     </form>
+    
     <form action="logout" method="GET">
         <input type="submit" value="Logout">
     </form>
-    <br><br>
-    <form action="add_doc" method="GET">
-        <input type="submit" value="Add Document">
+
+    <form action="client_tools" method="POST">
+        <lable for="client">Which Client</lable>
+        <select id="client_name" name="client_name">
+            {% for name in client_list %}
+            <option value="{{ name }}">{{ name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Submit" id="WR_step2">
     </form>
-    <form action="WR_step1" method="GET">
-        <input type="submit" value="Word Replacement">
-    </form>
+
 </body>
 </html>
