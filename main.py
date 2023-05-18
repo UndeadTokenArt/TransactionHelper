@@ -83,16 +83,18 @@ def check_for_match(my_list, dict_path):
     return new_dict
 
 
-def get_docs_list():
-    folder_path = 'documents'
+def get_docs_list(clients_name):
+    folder_path = f'documents/{clients_name}'
     doc_list = [f.name for f in os.scandir(folder_path) if f.is_file()]
     return doc_list
 
-def client_list():
+def client_list(new_dir = 'New Client'):
     folder_path = 'documents'
     folder_list = [f.name for f in os.scandir(folder_path) if f.is_dir()]
-    folder_list.append('Clients List')
+    if new_dir != 'New Client':
+        folder_list.append(new_dir)
     return folder_list
+
 
 
  # set each of the detail in details to their matching attrubute in the class transaction with the class being named after the value in the details list called Transactio_name

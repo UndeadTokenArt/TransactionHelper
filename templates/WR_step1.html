@@ -9,6 +9,8 @@
     <h1>Word replacement</h1>
     <br>
     <form action="WR_step2" method="POST">
+        <input type="hidden" name="client_name" value="{{ client_name }}">
+        <input type="hidden" name="my_dir" value="{{ my_dir }}">
         <lable for="path">What document would you like to start with?</lable>
         <select id="path" name="path">
             {% for doc in doc_list %}

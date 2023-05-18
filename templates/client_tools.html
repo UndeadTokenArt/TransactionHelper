@@ -13,7 +13,8 @@
         <input type="hidden" name="client_name" value="{{ client_name }}">
     </form>
 
-    <form action="WR_step1" method="GET">
+    <form action="WR_step1" method="POST">
+        <input type="hidden" name="client_name" value="{{ client_name }}">
         <input type="submit" value="Word Replacement">
     </form>
     

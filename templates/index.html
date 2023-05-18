@@ -12,19 +12,24 @@
     <form action="login" method="GET">
         <input type="submit" value="Login">
     </form>
-    
     <form action="logout" method="GET">
         <input type="submit" value="Logout">
     </form>
-
+<br>
+<h2> Please select a client folder or create a new one</h2>
+    <form action="new_client" method="POST">
+        <label for="new_client">New Client</label>
+        <input type="text" id="new_client_name" name="new_client_name">
+        <input type="submit" value="New Client!">
+    </form>
+<br>
     <form action="client_tools" method="POST">
-        <lable for="client">Which Client</lable>
+        <lable for="client">Which Client : </lable>
         <select id="client_name" name="client_name">
             {% for name in client_list %}
             <option value="{{ name }}">{{ name }}</option>
             {% endfor %}
         </select>
-        <br>
         <input type="submit" value="Submit" id="WR_step2">
     </form>
 

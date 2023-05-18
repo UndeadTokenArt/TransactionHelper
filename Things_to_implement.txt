@@ -5,3 +5,10 @@ okay, here is what we are working on.
 
 on main.py, we are trying to implement a function that dynamically builds an object based on the field generated from a form on the "new client.html" page. The object can grow with new attributes as needed. I am not convinced that we need it to be an object or just a dictionary of the information gathered. I think it would be great to use a object to store the data, but the more I think about it, I am wondering if a simple dictionairy would suffice for my needs. it might even be cleaner cause it can grow and shrink as needed.
 mostly what we are trying to do is get the information gathered from the new_client.html page to pass into the rest of the website and save the client information for future uses in tools that we have created. them we could export them into a google document or google sheet for later use. Then after that, we will work on importing info from google drive to be edited by our custom tool set.
+
+get the id from the form and use the name for the directory in drive
+
+Make a spread sheet in that directory that hold the data from the forms.
+make a folder inside the I.D. folder that has the final versions of the template emails
+Show a check list that shows how far you are in the transaction.
+   figure out what are the steps in the transaction.
