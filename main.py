@@ -84,7 +84,7 @@ def check_for_match(my_list, dict_path):
 
 
 def get_docs_list(clients_name):
-    folder_path = f'documents/{clients_name}'
+    folder_path = f'documents/{clients_name}/'
     doc_list = [f.name for f in os.scandir(folder_path) if f.is_file()]
     return doc_list
 

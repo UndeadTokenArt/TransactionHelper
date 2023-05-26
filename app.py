@@ -82,27 +82,31 @@ def returned_template():
 
 @app.route("/WR_step2", methods=['GET','POST'])
 def wr_step2():
-    path = request.form["path"]
-    # path = f'documents/{request.form["client_name"]}/{request.form["path"]}'
+    # path = request.form["path"]
+    path = f'documents/{request.form["client_name"]}/{request.form["path"]}'
     filename, ext = os.path.splitext(path)
     placeholders = aquire_placeholders(path)
     dict_path = filename + '_Data' + ext
     if os.path.isfile(dict_path):
         placeholders = check_for_match(placeholders, dict_path)
+    
     return render_template("WR_step2.html", placeholders=placeholders, path=path)
 
 
 @app.route("/result", methods=['GET', 'POST'])
 def result():
-    path = request.form["client_name"]
+    path = f'{request.form["path"]}'
     replacements = request.form.to_dict()
     write_paired_list(path, replacements)
     new_filename = word_replacer(replacements, path)
+
     with open(new_filename, "r") as f:
         display = markdown.markdown(f.read()) 
     
         #return display
         return render_template("result.html", display=display)
+
+        
 
 @app.route("/new_client", methods=['GET', 'POST'])
 def new_client():
