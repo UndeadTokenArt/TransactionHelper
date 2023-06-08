@@ -83,28 +83,34 @@ def returned_template():
 @app.route("/WR_step2", methods=['GET','POST'])
 def wr_step2():
     # path = request.form["path"]
-    path = f'documents/{request.form["client_name"]}/{request.form["path"]}'
+    base_list = [f.name for f in os.scandir('documents/') if f.is_file()]
+    if request.form['path'] in base_list:
+        path = f'documents/{request.form["path"]}'
+    else:
+        path = f'documents/{request.form["client_name"]}/{request.form["path"]}'
+    client_name = request.form['client_name']
     filename, ext = os.path.splitext(path)
     placeholders = aquire_placeholders(path)
     dict_path = filename + '_Data' + ext
     if os.path.isfile(dict_path):
         placeholders = check_for_match(placeholders, dict_path)
     
-    return render_template("WR_step2.html", placeholders=placeholders, path=path)
-
+    return render_template("WR_step2.html", placeholders=placeholders, path=path, client_name=client_name)
 
 @app.route("/result", methods=['GET', 'POST'])
 def result():
     path = f'{request.form["path"]}'
+    client_name = request.form['client_name']
     replacements = request.form.to_dict()
-    write_paired_list(path, replacements)
-    new_filename = word_replacer(replacements, path)
+    write_paired_list(path, replacements, client_name)
+    new_filename = word_replacer(replacements, path, client_name)
 
     with open(new_filename, "r") as f:
         display = markdown.markdown(f.read()) 
     
         #return display
         return render_template("result.html", display=display)
+
 
         
 
@@ -174,3 +180,8 @@ def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'txt'}
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
