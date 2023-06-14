@@ -1,3 +1,24 @@
+####################################################################################################################################
+# This app is intended to be used by a transaction coordinator to help with managing some simple but repetative tasks
+# that come up when dealing with clients who are buying or selling a house.
+# It can set a folder for each client, the T.C. can then do a word swap on templates that are already in the main documents folder
+# or add documents specific to the client in a subfolder named after the client
+#
+# It uses Flask as a framework so that some python code can dynamicly generate forms that the user can fill in instead of hunting down
+# the words in the template themselves
+# other languages include some html and CSS
+# There is code for logging in using a google account, but that doesnt yet have any functional use
+#
+#
+#
+#   - Warning -  - Warning -   - Warning -   - Warning -   - Warning -   - Warning -   - Warning -   - Warning - 
+#
+#   This has NO security at all. Any information passed into it can be accessed by anyone else using the program.
+#   Also, at the moment there is no function for deleting anything uploaded. Seriously do not actually use this 
+#   with anyones personal information.
+#
+####################################################################################################################################
+
 from flask import Flask, redirect, url_for, session, render_template, request
 from authlib.integrations.flask_client import OAuth
 import os
@@ -71,7 +92,7 @@ def logout():
         session.pop(key)
     return redirect('/')
 
-
+# gets the file that the user wants to make changes to
 @app.route("/WR_step1", methods=['GET', 'POST'])
 def returned_template():
     client_name = request.form['client_name']
@@ -79,7 +100,7 @@ def returned_template():
     doc_list = get_docs_list(client_name)
     return render_template("WR_step1.html", doc_list=doc_list, client_name=client_name, my_dir=my_dir)
 
-
+# loads the template document and gets the words in the document with "[  ]" and adds them to a form 
 @app.route("/WR_step2", methods=['GET','POST'])
 def wr_step2():
     # path = request.form["path"]
@@ -97,6 +118,8 @@ def wr_step2():
     
     return render_template("WR_step2.html", placeholders=placeholders, path=path, client_name=client_name)
 
+
+# shows the result of a document with the words replaced
 @app.route("/result", methods=['GET', 'POST'])
 def result():
     path = f'{request.form["path"]}'
@@ -113,7 +136,7 @@ def result():
 
 
         
-
+# adds a new client folder to the documents dir
 @app.route("/new_client", methods=['GET', 'POST'])
 def new_client():
     if request.method == 'POST':
@@ -121,12 +144,13 @@ def new_client():
         list = client_list(new_client_folder)
     return render_template('index.html', client_list=list)
 
+# Shows the form for uploading a txt or file 
 @app.route('/add_doc', methods=['GET', 'POST'])
 def add_doc():
         client_name = request.form['client_name']
         return render_template('add_doc.html', client_name=client_name)
 
-
+# for uploading a file to the document/{client_name}/ folder
 @app.route('/upload_f', methods=['GET', 'POST'])
 def add_file():
     if request.method == 'POST':
@@ -149,7 +173,7 @@ def add_file():
         # If request method is GET, render the form page
         return render_template('/add_doc')
 
-
+# for uploading txt to the documents/{client_name}/ folder
 @app.route('/upload_t', methods=['GET', 'POST'])
 def add_text():
     if request.method == 'POST':

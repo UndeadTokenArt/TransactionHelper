@@ -2,7 +2,6 @@ import re
 import os
 import ast
 
-
 #this should be the way that we keep track of things in the transaction.
 class Transaction:
     def __init__(self) -> None:
@@ -67,19 +66,6 @@ def get_values(form_data):
     return None
 
 
-# Function should save a document, and return the path and filename
-'''def write_paired_list(path, data, client_name):
-    # Write the modified content to the new file
-    new_dir = f'documents/{client_name}/data/'
-        
-    os.makedirs(new_dir, exist_ok=True)
-
-    my_dir = f'{new_dir}{client_name}.txt'
-
-    with open(my_dir, 'w') as f:
-        f.write(str(data))
-
-    return my_dir'''
 
 def write_paired_list(path, data, client_name):
     # Read the existing data from the file
@@ -126,7 +112,7 @@ def check_for_match(my_list, dict_path):
             new_dict[key] = value
     return new_dict
 
-
+# gathers the list of files inside the documents/{clients_name}/ directory and returns a list of the files
 def get_docs_list(clients_name):
     folder_path = f'documents/{clients_name}/'
     base_path = 'documents/'
@@ -135,6 +121,7 @@ def get_docs_list(clients_name):
     doc_list.extend(base_list)
     return doc_list
 
+# gets a list of the folders inside documents directory - the folders should have the name of a client
 def client_list(new_dir = 'New Client'):
     folder_path = 'documents'
     folder_list = [f.name for f in os.scandir(folder_path) if f.is_dir()]

@@ -1,8 +1,9 @@
 body {
-    text-align: center;
+    text-align: left;
     background-color: SlateGrey;
 }
 h1 {
+    text-align: center;
     color: lightgray;
 }
 h2 {
@@ -25,9 +26,9 @@ img {
     width: 250px;
 }
 input {
-  width: 300px;
+  width: 200px;
   margin: 20px 20px;
-  height: 50px;
+  height: 30px;
   border: none;
   border-radius: 10px;
   font-family: Shanti;
