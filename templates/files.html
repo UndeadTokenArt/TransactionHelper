@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Drive Files</title>
+</head>
+<body>
+    <h1>Files:</h1>
+    <ul>
+        {% for item in items %}
+        <li>{{ item['name'] }} ({{ item['id'] }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

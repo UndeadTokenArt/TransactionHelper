@@ -20,12 +20,74 @@
 ####################################################################################################################################
 
 from flask import Flask, redirect, url_for, session, render_template, request
-from authlib.integrations.flask_client import OAuth
+# from authlib.integrations.flask_client import OAuth
 import os
 from dotenv import load_dotenv
 from main import word_replacer, get_docs_list, aquire_placeholders, write_paired_list, check_for_match, client_list
 import markdown
 
+# these Imports are for the Google Oauth protocal 
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+
+app = Flask(__name__)
+app.secret_key = os.getenv("APP_SECRET_KEY")
+
+SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
+
+
+# ...
+
+SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
+
+@app.route('/')
+def index():
+    if 'credentials' not in session:
+        return redirect('/authorize')
+    else:
+        credentials = Credentials.from_authorized_user_info(session['credentials'], SCOPES)
+        if not credentials or not credentials.valid:
+            return redirect('/authorize')
+        try:
+            service = build('drive', 'v3', credentials=credentials)
+            results = service.files().list(pageSize=10, fields="nextPageToken, files(id, name)").execute()
+            items = results.get('files', [])
+            return render_template('files.html', items=items)
+        except HttpError as error:
+            # Handle errors from Drive API
+            return f'An error occurred: {error}'
+
+@app.route('/authorize')
+def authorize():
+    if 'credentials' not in session:
+        flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
+        flow.redirect_uri = 'https://localhost:5000/callback'
+        authorization_url, state = flow.authorization_url(access_type='offline', include_granted_scopes='true')
+        session['state'] = state
+        return redirect(authorization_url)
+
+@app.route('/callback')
+def callback():
+    state = session['state']
+    flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES, state=state)
+    flow.redirect_uri = 'https://localhost:5000/callback'
+    authorization_response = request.url
+    flow.fetch_token(authorization_response=authorization_response)
+    credentials = flow.credentials
+    session['credentials'] = credentials.to_json()
+    return redirect('/')
+
+'''  I dont think I need these lines but they were in the code from google
+if __name__ == '__app__':
+    app.run()
+'''
+
+
+# Legacy implementation of the Oauth for Google Drive -- Doesn't work --
+'''
 load_dotenv()  # take environment variables from .env.
 
 app = Flask(__name__)
@@ -47,12 +109,13 @@ google = oauth.register(
         'scope': 'profile'
     },
 )
-
-@app.route("/", methods=['GET','POST'])
+'''
+# Also commented out for the use of the earlier  reference to '/' route
+'''@app.route("/", methods=['GET','POST'])
 def index():
     gprofile = session.get('profile')
     list = client_list()
-    return render_template('index.html', client_list=list)
+    return render_template('index.html', client_list=list)'''
 
 
 @app.route('/client_tools', methods=['GET','POST'])
@@ -72,7 +135,9 @@ def login():
     redirect_uri = url_for('authorize', _external=True)
     return oauth.google.authorize_redirect(redirect_uri)
 
+# For Testing purposes, this is commented out so the one above can not conflict
 
+'''
 @app.route('/authorize')
 def authorize():
     token = oauth.google.authorize_access_token()
@@ -83,7 +148,7 @@ def authorize():
         'client_secret' : os.getenv("GOOGLE_CLIENT_SECRET"),
         'refresh_token' : None
     }
-    return redirect('/')
+    return redirect('/')'''
 
 
 @app.route('/logout')
